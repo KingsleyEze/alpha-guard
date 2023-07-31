@@ -4,6 +4,8 @@ import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 import { Plugin } from "@/types";
 
+const API_HOST = process.env.VUE_APP_SERVER_HOST || "http://localhost:3000";
+
 export interface State {
   disableAllPlugins: boolean;
   plugins: Plugin[];
@@ -33,12 +35,9 @@ export const store = createStore<State>({
   actions: {
     async toggleDisableAllPlugins(context, payload) {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/toggle-plugins",
-          {
-            toggleStatus: payload,
-          }
-        );
+        const response = await axios.post(`${API_HOST}/api/toggle-plugins`, {
+          toggleStatus: payload,
+        });
 
         if (response.status === 200) {
           context.commit("setDisableAllPlugins", payload);
@@ -49,7 +48,7 @@ export const store = createStore<State>({
       }
     },
     async fetchPlugins(context) {
-      const { data } = await axios.get("http://localhost:3000/data");
+      const { data } = await axios.get(`${API_HOST}/data`);
       const tabsData = data.tabdata;
       const pluginsData = data.plugins;
 
@@ -80,7 +79,7 @@ export const store = createStore<State>({
     },
     async updatePluginStatus(context, { plugin, newStatus }) {
       await axios.post(
-        `http://localhost:3000/tabdata/${plugin.tab}/${plugin.status}/${plugin.id}`,
+        `${API_HOST}/tabdata/${plugin.tab}/${plugin.status}/${plugin.id}`,
         { status: newStatus }
       );
       context.commit("togglePluginStatus", plugin.id);
