@@ -17,4 +17,6 @@ yarn install && yarn serve
 
 
 
+### Visual
+![image](https://github.com/KingsleyEze/alpha-guard/assets/20340730/1a7dedd1-91a8-40f9-b961-1ac783e05aba)
 
