@@ -78,7 +78,7 @@ export const store = createStore<State>({
 
       context.commit("setPlugins", plugins);
     },
-    async async(context, { plugin, newStatus }) {
+    async updatePluginStatus(context, { plugin, newStatus }) {
       await axios.post(
         `http://localhost:3000/tabdata/${plugin.tab}/${plugin.status}/${plugin.id}`,
         { status: newStatus }
