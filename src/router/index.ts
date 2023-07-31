@@ -4,7 +4,7 @@ import PluginView from "@/views/PluginView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "plugins",
+    name: "home",
     component: PluginView,
     children: [
       { path: "tab/:tab", component: PluginView, name: "tab", props: true },

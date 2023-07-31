@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar-container">
-    <img class="logo" :src="AppLogo" alt="DataGuard" />
+    <router-link to="/">
+      <img class="logo" :src="AppLogo" alt="DataGuard" />
+    </router-link>
     <NavMenu />
     <PowerSwitch class="power-switch" />
     <div class="power-switch-wrapper"></div>

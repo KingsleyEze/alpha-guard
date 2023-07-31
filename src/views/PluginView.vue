@@ -1,5 +1,6 @@
 <template>
-  <PluginLayout>
+  <HelloDataGuard v-if="!tabTitle" />
+  <PluginLayout v-if="tabTitle">
     <template #pluginHeader>
       <div class="header-text">{{ tabTitle }} Plugins</div>
     </template>
@@ -45,6 +46,7 @@ import { ref, onMounted, watch, computed } from "vue";
 import { useRoute } from "vue-router";
 import { capitalize } from "lodash";
 import PluginLayout from "@/layout/PluginLayout.vue";
+import HelloDataGuard from "@/components/HelloDataGuard.vue";
 import ToggleSwitch from "@/components/common/ToggleSwitch.vue";
 import { useStore } from "@/store";
 import { Plugin } from "@/types";
